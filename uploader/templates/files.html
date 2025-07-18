@@ -14,16 +14,27 @@
         <h1 class="text-3xl font-bold">📁 Uploaded Files</h1>
         <a href="{% url 'upload_file' %}" class="text-blue-600 hover:underline text-sm">+ Upload New File</a>
       </div>
+      <div class="bg-red-100 text-red-800 p-4 rounded mb-4">
+  <strong>DEBUG:</strong>
+  <pre>{{ files }}</pre>
+</div>
       {% if files %}
       <ul class="space-y-4">
         {% for file in files %}
-        <li class="p-4 bg-gray-100 rounded-lg hover:bg-gray-200 transition">
-          <div class="flex justify-between items-center">
-            <a href="{{ file.file.url }}" class="text-lg font-medium text-blue-600 hover:underline">{{ file.file.name|default:"Untitled" }}</a>
-            <span class="text-sm text-gray-500">{{ file.uploaded_at|date:"M d, Y H:i" }}</span>
-          </div>
-        </li>
-        {% endfor %}
+  <li class="p-4 bg-gray-100 rounded-lg hover:bg-gray-200 transition">
+    <div class="flex justify-between items-center">
+      {% if file.file %}
+        <a href="{{ file.file.url }}" class="text-lg font-medium text-blue-600 hover:underline">
+          {{ file.file.name|default:"Untitled" }}
+        </a>
+      {% else %}
+        <span class="text-red-600">File not found</span>
+      {% endif %}
+      <span class="text-sm text-gray-500">{{ file.uploaded_at|date:"M d, Y H:i" }}</span>
+    </div>
+  </li>
+{% endfor %}
+
       </ul>
       {% else %}
       <p class="text-gray-500 text-center">No files uploaded yet.</p>
