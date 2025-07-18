@@ -17,4 +17,5 @@ def upload_file(request):
 
 def uploaded_files(request):
     files = UploadedFile.objects.order_by('-uploaded_at').all()
+    print(files)
     return render(request, 'files.html', {'files': files})
