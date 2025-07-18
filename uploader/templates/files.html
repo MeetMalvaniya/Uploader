@@ -19,7 +19,7 @@
         {% for file in files %}
         <li class="p-4 bg-gray-100 rounded-lg hover:bg-gray-200 transition">
           <div class="flex justify-between items-center">
-            <a href="{{ file.file.url }}" class="text-lg font-medium text-blue-600 hover:underline">{{ file.title }}</a>
+            <a href="{{ file.file.url }}" class="text-lg font-medium text-blue-600 hover:underline">{{ file.file.name|default:"Untitled" }}</a>
             <span class="text-sm text-gray-500">{{ file.uploaded_at|date:"M d, Y H:i" }}</span>
           </div>
         </li>
