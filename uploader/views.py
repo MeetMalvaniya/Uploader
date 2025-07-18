@@ -6,8 +6,11 @@ def upload_file(request):
     if request.method == 'POST':
         form = FileUploadForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-            return redirect('uploaded_files')
+            try:
+                form.save()
+                return redirect('uploaded_files')
+            except Exception as e:
+                return render(request, 'upload.html', {'form': form, 'error': str(e)})
     else:
         form = FileUploadForm()
     return render(request, 'upload.html', {'form': form})

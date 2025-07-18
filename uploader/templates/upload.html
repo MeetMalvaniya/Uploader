@@ -50,5 +50,9 @@
       <a href="{% url 'uploaded_files' %}" class="text-sm text-blue-500 hover:underline">📁 View Uploaded Files</a>
     </div>
   </div>
+
+  {% if error %}
+  <p class="text-red-600">{{ error }}</p>
+{% endif %}
 </body>
 </html>
