@@ -16,6 +16,5 @@ def upload_file(request):
     return render(request, 'upload.html', {'form': form})
 
 def uploaded_files(request):
-    files = UploadedFile.objects.order_by('-uploaded_at').all()
-    print(files)
+    files = UploadedFile.objects.order_by('-uploaded_at')
     return render(request, 'files.html', {'files': files})
